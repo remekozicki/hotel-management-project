@@ -1,14 +1,42 @@
+import {useState} from "react";
 
+interface RoomListProps{
+    items: string[];
+    heading: string;
 
-function RoomList(){
+    onSelectItem: (item: string) => void;
+}
+
+function RoomList({items, heading, onSelectItem}: RoomListProps){
+
+    //hook
+    let [selectedIndex, setSelectedIndex ] = useState(-1);
+
+    // arr[0] // selected index
+    // arr[1] // updated function
+
+    // const [name, setName] = useState('');
+
     return (
-        <ul className="list-group">
-            <li className="list-group-item">An item</li>
-            <li className="list-group-item">A second item</li>
-            <li className="list-group-item">A third item</li>
-            <li className="list-group-item">A fourth item</li>
-            <li className="list-group-item">And a fifth one</li>
-        </ul>
+        <>
+            <h1>{heading}</h1>
+            <ul className="list-group">
+                {items.map((item, index) =>(
+                    <li
+                        className = {selectedIndex === index ? 'list-group-item active' : 'list-group-item' }
+                        key={item}
+                        onClick={()=>{
+                            setSelectedIndex(index);
+                            onSelectItem(item);
+                        }}
+                    >{item}</li>
+                ))}
+            </ul>
+        </>
+
+
+
+
     );
 }
 export default RoomList;
