@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "644fd9e06be09ca9ff6c6661",
+    "firstname": "Florence",
+    "lastname": "Roth",
+    "email": "florenceroth@zaphire.com",
+    "phone": "+48 (954) 583-2914",
+    "address": "774 Walker Court, Gadsden, Ohio, 2037",
+    "registered": "2021-12-13T08:21:10 -01:00",
+    "salary": 3559
+  },
+  {
+    "_id": "644fd9e046d1d7fa4f17e8ad",
+    "firstname": "Myra",
+    "lastname": "Baker",
+    "email": "myrabaker@zaphire.com",
+    "phone": "+48 (863) 522-2655",
+    "address": "735 Elliott Walk, Fredericktown, Maryland, 8319",
+    "registered": "2022-12-07T08:25:34 -01:00",
+    "salary": 4085
+  },
+  {
+    "_id": "644fd9e0b98e1df9a38143d1",
+    "firstname": "Frank",
+    "lastname": "Griffith",
+    "email": "frankgriffith@zaphire.com",
+    "phone": "+48 (864) 514-3328",
+    "address": "657 Channel Avenue, Waterview, Utah, 126",
+    "registered": "2016-07-23T02:14:07 -02:00",
+    "salary": 3420
+  }
+]
