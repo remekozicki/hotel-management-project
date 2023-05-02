@@ -1,5 +1,3 @@
-import {MDBBtn, MDBContainer, MDBFooter, MDBIcon} from "mdb-react-ui-kit";
-
 
 function FooterComponent(){
 
