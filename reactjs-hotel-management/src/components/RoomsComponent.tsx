@@ -13,7 +13,7 @@ function RoomsComponent(): JSX.Element {
     }, []);
 
     return (
-        <div className='wrapper' style={{minHeight:"80vh"}}>
+        <div className='wrapper'>
             <h2 className='p-3'>Available rooms:</h2>
             <div className='d-flex flex-wrap gap-5 justify-content-center'>
                 {rooms.map((roomType: RoomType) => {

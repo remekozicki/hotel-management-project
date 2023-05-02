@@ -7,14 +7,16 @@ import FooterComponent from "./components/FooterComponent";
 
 function App() {
 
-    return (<BrowserRouter>
+    return (<BrowserRouter >
             <NavbarComponent/>
-            <Routes >
-                <Route path="/" element={<HomeComponent/>}></Route>
-                <Route path="/home" element={<HomeComponent/>}></Route>
-                <Route path="/rooms" element={<RoomsComponent/>}></Route>
+            <div style={{minHeight:"80vh"}}>
+                <Routes >
+                    <Route path="/" element={<HomeComponent/>}></Route>
+                    <Route path="/home" element={<HomeComponent/>}></Route>
+                    <Route path="/rooms" element={<RoomsComponent/>}></Route>
 
-            </Routes>
+                </Routes>
+            </div>
             <FooterComponent></FooterComponent>
         </BrowserRouter>
     )

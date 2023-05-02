@@ -7,7 +7,7 @@ import {Route} from "react-router-dom";
 
 function NavbarComponent(): JSX.Element {
     return (
-        <Navbar className='sticky-top' bg="light" expand="lg" style={{height:"10vh"}}>
+        <Navbar className='sticky-top ' bg="light" expand="lg" style={{height:"10vh"}}>
             <Container>
                 <Navbar.Brand href="/home">React-Bootstrap</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
