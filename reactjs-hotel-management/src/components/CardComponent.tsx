@@ -2,8 +2,11 @@ import RoomType from "../models/RoomType";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import React from "react";
+import {useParams} from "react-router-dom";
+
 
 function CardComponent(roomType: RoomType): JSX.Element {
+
     return (
         <Card style={{width: '20rem'}}>
             <Card.Img variant="top" src={roomType.image} style={{height:"230px"}}/>
@@ -21,7 +24,7 @@ function CardComponent(roomType: RoomType): JSX.Element {
                 </ListGroup>
                 <Card.Body>
                     <Card.Link className="btn btn-primary stretched-link "
-                        href="#">
+                        href='/details/'>
                         Show room details
                     </Card.Link>
                 </Card.Body>

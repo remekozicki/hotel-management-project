@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import HomeComponent from "./components/HomeComponent";
 import RoomsComponent from "./components/RoomsComponent";
 import FooterComponent from "./components/FooterComponent";
+import ApartmentDetailsComponent from "./components/ApartmentDetailsComponent";
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
                     <Route path="/" element={<HomeComponent/>}></Route>
                     <Route path="/home" element={<HomeComponent/>}></Route>
                     <Route path="/rooms" element={<RoomsComponent/>}></Route>
+                    <Route path="/details/:id" element={<ApartmentDetailsComponent/>}></Route>
 
                 </Routes>
             </div>
