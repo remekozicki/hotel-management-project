@@ -24,7 +24,7 @@ function CardComponent(roomType: RoomType): JSX.Element {
                 </ListGroup>
                 <Card.Body>
                     <Card.Link className="btn btn-primary stretched-link "
-                        href={'/details/' + roomType._id}>
+                        href={'/rooms/' + roomType._id}>
                         Show room details
                     </Card.Link>
                 </Card.Body>
