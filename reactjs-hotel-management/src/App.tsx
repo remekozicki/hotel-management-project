@@ -6,6 +6,7 @@ import RoomsComponent from "./components/RoomsComponent";
 import FooterComponent from "./components/FooterComponent";
 import ApartmentDetailsComponent from "./components/ApartmentDetailsComponent";
 import UsersComponent from "./components/UsersComponent";
+import UserComponent from "./components/UserComponent";
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
                     <Route path="/rooms" element={<RoomsComponent/>}></Route>
                     <Route path="/rooms/:id" element={<ApartmentDetailsComponent/>}></Route>
                     <Route path="/users" element={<UsersComponent/>}></Route>
-
+                    <Route path="/users/:id" element={<UserComponent/>}></Route>
                 </Routes>
             </div>
             <FooterComponent></FooterComponent>

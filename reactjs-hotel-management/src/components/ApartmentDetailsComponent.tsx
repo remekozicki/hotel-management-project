@@ -4,7 +4,7 @@ import RoomType from "../models/RoomType";
 import {useEffect, useState} from "react";
 import data from "../assets/RoomsTypesData.json";
 
-function ApartmentDetailsComponent(){
+function ApartmentDetailsComponent(): JSX.Element {
 
     const [rooms, setRooms] = useState<RoomType[]>([]);
     useEffect(() => {
