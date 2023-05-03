@@ -5,6 +5,7 @@ import HomeComponent from "./components/HomeComponent";
 import RoomsComponent from "./components/RoomsComponent";
 import FooterComponent from "./components/FooterComponent";
 import ApartmentDetailsComponent from "./components/ApartmentDetailsComponent";
+import UsersComponent from "./components/UsersComponent";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
                     <Route path="/home" element={<HomeComponent/>}></Route>
                     <Route path="/rooms" element={<RoomsComponent/>}></Route>
                     <Route path="/rooms/:id" element={<ApartmentDetailsComponent/>}></Route>
+                    <Route path="/users" element={<UsersComponent/>}></Route>
 
                 </Routes>
             </div>

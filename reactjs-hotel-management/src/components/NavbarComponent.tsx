@@ -15,12 +15,7 @@ function NavbarComponent(): JSX.Element {
                     <Nav className="me-auto">
                         <Nav.Link href="/home">Home</Nav.Link>
                         <Nav.Link href="/rooms">Rooms</Nav.Link>
-                        <NavDropdown title="Users" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Clients</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                                Employees
-                            </NavDropdown.Item>
-                        </NavDropdown>
+                        <Nav.Link href="/users">Users</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

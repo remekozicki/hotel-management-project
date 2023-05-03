@@ -23,12 +23,13 @@ function CardComponent(roomType: RoomType): JSX.Element {
                     <ListGroup.Item>price: {roomType.price}$</ListGroup.Item>
                 </ListGroup>
                 <Card.Body>
-                    <Card.Link className="btn btn-primary stretched-link "
+                    <a className="btn btn-primary stretched-link "
                         href={'/rooms/' + roomType._id}>
                         Show room details
-                    </Card.Link>
+                    </a>
                 </Card.Body>
-        </Card>)
+        </Card>
+    );
 }
 
 export default CardComponent;
