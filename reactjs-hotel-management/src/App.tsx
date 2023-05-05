@@ -1,12 +1,12 @@
 import {useState} from "react";
-import NavbarComponent from "./components/NavbarComponent";
+import NavbarComponent from "./components/NavbarComponent/NavbarComponent";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import HomeComponent from "./components/HomeComponent";
-import RoomsComponent from "./components/RoomsComponent";
-import FooterComponent from "./components/FooterComponent";
-import ApartmentDetailsComponent from "./components/ApartmentDetailsComponent";
-import UsersComponent from "./components/UsersComponent";
-import UserComponent from "./components/UserComponent";
+import HomeComponent from "./components/HomeComponent/HomeComponent";
+import RoomsComponent from "./components/RoomsComponent/RoomsComponent";
+import FooterComponent from "./components/FooterComponent/FooterComponent";
+import ApartmentDetailsComponent from "./components/ApartmentDetailsComponent/ApartmentDetailsComponent";
+import UsersComponent from "./components/UsersComponent/UsersComponent";
+import UserComponent from "./components/UserComponent/UserComponent";
 
 function App() {
 

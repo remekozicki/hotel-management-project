@@ -23,7 +23,7 @@ function HomeComponent(): JSX.Element {
                 }}
             >
                 <h1>Welcome to "HotelName"</h1>
-                <h2>Jebac nie mam pomysłu ale Footer chyba działa jak natura chciała</h2>
+                <h2></h2>
                 <div className="MapWrapper">
                     <div>
                         <image>

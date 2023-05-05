@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import PersonType from "../models/PersonType";
-import empData from "../assets/EmployeesData.json"
-import cliData from "../assets/ClientsData.json"
+import PersonType from "../../models/PersonType";
+import empData from "../../assets/EmployeesData.json"
+import cliData from "../../assets/ClientsData.json"
 
 import {
     MDBBtn,

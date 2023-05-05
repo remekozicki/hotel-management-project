@@ -1,4 +1,4 @@
-import RoomType from "../models/RoomType";
+import RoomType from "../../models/RoomType";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import React from "react";

@@ -45,9 +45,9 @@ function UserPopupComponent(): JSX.Element {
                                         </MDBRow>
 
                                         <div className="d-flex justify-content-start">
-                                            <a href="#!"><MDBIcon fab icon="facebook me-3" size="lg" /></a>
-                                            <a href="#!"><MDBIcon fab icon="twitter me-3" size="lg" /></a>
-                                            <a href="#!"><MDBIcon fab icon="instagram me-3" size="lg" /></a>
+                                            <a href="src/components/UserPopupComponent/UserPopupComponent#!"><MDBIcon fab icon="facebook me-3" size="lg" /></a>
+                                            <a href="src/components/UserPopupComponent/UserPopupComponent#!"><MDBIcon fab icon="twitter me-3" size="lg" /></a>
+                                            <a href="src/components/UserPopupComponent/UserPopupComponent#!"><MDBIcon fab icon="instagram me-3" size="lg" /></a>
                                         </div>
                                     </MDBCardBody>
                                 </MDBCol>

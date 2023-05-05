@@ -1,9 +1,9 @@
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import React, {useState, useEffect} from 'react';
-import data from '../assets/RoomsTypesData.json';
-import RoomType from "../models/RoomType";
-import CardComponent from "./CardComponent";
+import data from '../../assets/RoomsTypesData.json';
+import RoomType from "../../models/RoomType";
+import CardComponent from "../CardComponent/CardComponent";
 
 function RoomsComponent(): JSX.Element {
 

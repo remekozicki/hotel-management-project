@@ -1,8 +1,8 @@
 import {useParams} from "react-router-dom";
 
-import RoomType from "../models/RoomType";
+import RoomType from "../../models/RoomType";
 import {useEffect, useState} from "react";
-import data from "../assets/RoomsTypesData.json";
+import data from "../../assets/RoomsTypesData.json";
 
 function ApartmentDetailsComponent(): JSX.Element {
 
