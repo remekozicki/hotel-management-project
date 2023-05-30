@@ -1,7 +1,7 @@
 const db = require("../models");
 const Room = db.room_types;
 
-// Retrieve all Rooms from the database.
+// Retrieve all room types from the database.
 exports.getAll = (req, res) => {
     Room.find()
         .then(data => {
@@ -10,7 +10,7 @@ exports.getAll = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving list of rooms."
+                    err.message || "Some error occurred while retrieving list of types of rooms."
             })
         })
 };
@@ -30,7 +30,7 @@ exports.getOne = (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error retrieving Tutorial with id: %s", id
+                message: "Error retrieving Room with id: %s", id
             })
         })
 }
@@ -69,8 +69,7 @@ exports.getOne = (req, res) => {
 // Create and Save a new Room without file
 exports.create = (req, res) => {
 
-
-    // Create a Tutorial
+    // Create a Room Type
     const room = new Room({
         type: req.body.type,
         image: req.body.image? req.body.image: "",
@@ -79,7 +78,7 @@ exports.create = (req, res) => {
         description: req.body.description
     })
 
-    // Save Tutorial in the database
+    // Save room type in the database
     room
         .save(room)
         .then(data => {
@@ -88,7 +87,7 @@ exports.create = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while creating the Tutorial."
+                    err.message || "Some error occurred while creating the room type."
             });
         });
 };
@@ -101,17 +100,17 @@ exports.delete = (req, res) => {
         .then(data => {
             if (!data) {
                 res.status(404).send({
-                    message: `Cannot delete Room with id=${id}. Maybe Room was not found!`
+                    message: `Cannot delete Room with id=${id}. Maybe Room Type was not found!`
                 });
             } else {
                 res.send({
-                    message: "Room was deleted successfully!"
+                    message: "Room Type was deleted successfully!"
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete Room with id=" + id
+                message: "Could not delete Room Type with id=" + id
             });
         });
 };
@@ -121,7 +120,7 @@ exports.deleteAll = (req, res) => {
     Room.deleteMany({})
         .then(data => {
             res.send({
-                message: `${data.deletedCount} Rooms were deleted successfully!`
+                message: `${data.deletedCount} Room types were deleted successfully!`
             });
         })
         .catch(err => {
