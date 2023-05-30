@@ -1,6 +1,6 @@
 
 module.exports = app => {
-    const room = require("../controllers/rooms.controller.js");
+    const room = require("../controllers/room_types.controller.js");
 
     let router = require("express").Router();
 
