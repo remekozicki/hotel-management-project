@@ -1,5 +1,5 @@
 module.exports = mongoose => {
-    const roomSchema = mongoose.Schema(
+    const roomTypeSchema = mongoose.Schema(
         {
             type: String,
             image: String,
@@ -16,5 +16,5 @@ module.exports = mongoose => {
     //     return object;
     // });
 
-    return mongoose.model("room_types", roomSchema);
+    return mongoose.model("room_types", roomTypeSchema);
 };
