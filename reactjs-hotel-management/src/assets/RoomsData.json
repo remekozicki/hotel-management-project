@@ -1,0 +1,78 @@
+[
+  {
+    "_id": "6475c38ca5236f5c4af635b8",
+    "room_number": 101,
+    "type_id": "628d0d2e22b44fb4124bb51d"
+  },
+  {
+    "_id": "6475c38c52acea8fe558e35f",
+    "room_number": 102,
+    "type_id": "628d0d2e22b44fb4124bb51d"
+  },
+  {
+    "_id": "6475c38cddf68703b566f2a8",
+    "room_number": 103,
+    "type_id": "628d0d2e22b44fb4124bb51d"
+  },
+  {
+    "_id": "6475c3cd739a2b3368690f68",
+    "room_number": 104,
+    "type_id": "628d0d2ece9567c2f36e01b7"
+  },
+  {
+    "_id": "6475c3cd3623306fa6eee9d7",
+    "room_number": 105,
+    "type_id": "628d0d2ece9567c2f36e01b7"
+  },
+  {
+    "_id": "6475c3cdc02f9ac5b498f3b1",
+    "room_number": 106,
+    "type_id": "628d0d2ece9567c2f36e01b7"
+  },
+  {
+    "_id": "6475c3e220a566fb34c3a109",
+    "room_number": 201,
+    "type_id": "628d0d2ee597f5ae21500b55"
+  },
+  {
+    "_id": "6475c3e29caab876023ee7ce",
+    "room_number": 202,
+    "type_id": "628d0d2ee597f5ae21500b55"
+  },
+  {
+    "_id": "6475c3e2e9dc342a86b7c5b6",
+    "room_number": 203,
+    "type_id": "628d0d2ee597f5ae21500b55"
+  },
+  {
+    "_id": "6475c3efbe3d0a434f3c501c",
+    "room_number": 204,
+    "type_id": "628d0d2e2dc9f464522aeb46"
+  },
+  {
+    "_id": "6475c3ef87b92af25094fbfd",
+    "room_number": 205,
+    "type_id": "628d0d2e2dc9f464522aeb46"
+  },
+  {
+    "_id": "6475c3eff5158fe10ad0e06c",
+    "room_number": 206,
+    "type_id": "628d0d2e2dc9f464522aeb46"
+  },
+  {
+    "_id": "6475c4005e748c8ef9ac2ac1",
+    "room_number": 301,
+    "type_id": "628d0d2e9b4f386adf3c679c"
+  },
+  {
+    "_id": "6475c400296c8e8660cb5434",
+    "room_number": 302,
+    "type_id": "628d0d2e9b4f386adf3c679c"
+  },
+  {
+    "_id": "6475c4005c1d8780a64e25e4",
+    "room_number": 303,
+    "type_id": "628d0d2e9b4f386adf3c679c"
+  }
+
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "_id": "628d101398e88560beb96209",
+    "client_id": "644fd98545d4d5cfb71e6d21",
+    "start_date": "2023-05-04T05:33:17 -02:00",
+    "end_date": "2023-05-06T04:19:27 -02:00",
+    "status": "pending",
+    "room_id": "6475c38ca5236f5c4af635b8"
+  },
+  {
+    "_id": "6475c57519ada1b9ec2a20aa",
+    "client_id": "644fd985f75613ee8115a2d7",
+    "start_date": "2023-05-08T05:33:17 -02:00",
+    "end_date": "2023-05-13T04:19:27 -02:00",
+    "status": "cancelled",
+    "room_id": "6475c3e29caab876023ee7ce"
+  },
+  {
+    "_id": "6475c575b6d66400cdac95a9",
+    "client_id": "644fd985f75613ee8115a2d7",
+    "start_date": "2023-05-21T05:33:17 -02:00",
+    "end_date": "2023-05-25T04:19:27 -02:00",
+    "status": "accepted",
+    "room_id": "6475c3e29caab876023ee7ce"
+  },
+  {
+    "_id": "6475c5753a048dedd8474d92",
+    "client_id": "644fd985a0d8afb57cf4a7d3",
+    "start_date": "2023-05-21T05:33:17 -02:00",
+    "end_date": "2023-05-27T04:19:27 -02:00",
+    "status": "accepted",
+    "room_id": "6475c4005c1d8780a64e25e4"
+  },
+  {
+    "_id": "6475c5752442bd943b655751",
+    "client_id": "644fd9856575a2033b354196",
+    "start_date": "2023-05-29T05:33:17 -02:00",
+    "end_date": "2023-06-05T04:19:27 -02:00",
+    "status": "pending",
+    "room_id": "6475c3ef87b92af25094fbfd"
+  }
+]
