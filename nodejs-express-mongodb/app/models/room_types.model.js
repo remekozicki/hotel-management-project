@@ -16,5 +16,5 @@ module.exports = mongoose => {
     //     return object;
     // });
 
-    return mongoose.model("room", roomSchema);
+    return mongoose.model("room_types", roomSchema);
 };

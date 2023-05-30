@@ -1,13 +1,13 @@
 module.exports = mongoose => {
-    const personSchema = mongoose.Schema(
+    const clientSchema = mongoose.Schema(
         {
             firstname: String,
             lastname: String,
             email: String,
+            password: String,
             phone: String,
             address: String,
             registered: String,
-            // salary: Number?
 
         },
         { timestamps: true }
@@ -19,6 +19,5 @@ module.exports = mongoose => {
     //     return object;
     // });
 
-    const people = mongoose.model("person", personSchema);
-    return people;
+    return mongoose.model("client", clientSchema);
 };
