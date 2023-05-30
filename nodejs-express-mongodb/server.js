@@ -35,7 +35,7 @@ app.get("/", (req, res) => {
     res.json({ message: "test alnlanfelk." });
 });
 
-require("./app/routes/rooms.routes")(app);
+require("./app/routes/room_types.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
