@@ -1,8 +1,13 @@
 module.exports = mongoose => {
     const roomSchema = mongoose.Schema(
         {
-            room_number: Number,
-            type_id: String
+            type: String,
+            image: String,
+            size: Number,
+            price: Number,
+            description: String,
+            rooms_array: [],
+            room_reviews: []
         },
         { timestamps: true }
     );

@@ -32,13 +32,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // simple route
 app.get("/", (req, res) => {
-    res.json({ message: "test alnlanfelk." });
+    res.json({ message: "server works!!!" });
 });
 
-require("./app/routes/room_types.routes")(app);
+
 require("./app/routes/rooms.routes")(app);
-require("./app/routes/reservations.routes")(app);
-require("./app/routes/reviews.routes")(app);
+// require("./app/routes/client.routes")(app);
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

@@ -6,8 +6,14 @@ module.exports = mongoose => {
             email: String,
             password: String,
             phone: String,
-            address: String,
+            address: {
+                city: String,
+                street: String,
+                building_number: Number
+            },
             registered: String,
+            reservations_history: [],
+            role: String
 
         },
         { timestamps: true }

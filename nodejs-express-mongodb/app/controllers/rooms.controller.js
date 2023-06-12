@@ -36,25 +36,6 @@ exports.getByTypeID = (req, res) => {
         })
 }
 
-exports.create = (req, res) => {
-
-    // Create a new room
-    const room = new Room({
-        room_number: req.body.room_number,
-        type_id: req.body.type_id
-    })
-
-    room
-        .save(room)
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while creating the room."
-            });
-        });
-};
 
 exports.delete = (req, res) => {
     const id = req.params.id;

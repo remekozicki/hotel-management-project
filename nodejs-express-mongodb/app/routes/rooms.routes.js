@@ -6,7 +6,6 @@ module.exports = app => {
 
     router.get("/", room.getAll);
     router.get("/:type_id", room.getByTypeID);
-    router.post("/", room.create);
     router.delete("/:id", room.delete);
     router.delete("/", room.deleteAll);
 
