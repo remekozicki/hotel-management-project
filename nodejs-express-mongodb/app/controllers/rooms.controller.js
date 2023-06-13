@@ -34,9 +34,9 @@ exports.getById = (req, res) => {
 };
 
 exports.getWithAvailableDateAndRoomType = (req, res) => {
-    const input_start_date = new Date(req.query.start);
-    const input_end_date = new Date(req.query.end);
-    const input_type = req.query.type
+    const input_start_date = new Date(req.body.start);
+    const input_end_date = new Date(req.body.end);
+    const input_type = req.body.type
 
     Room.aggregate([
         {$unwind: "$rooms_array"},
@@ -123,9 +123,9 @@ exports.getWithAvailableDateAndRoomType = (req, res) => {
 }
 
 exports.getWithStatus = (req, res) => {
-    const input_status = req.query.status;
-    const input_start_date = new Date(req.query.start);
-    const input_end_date = new Date(req.query.end);
+    const input_status = req.body.status;
+    const input_start_date = new Date(req.body.start);
+    const input_end_date = new Date(req.body.end);
 
     Room.aggregate([
         {$unwind: "$rooms_array"},
@@ -175,7 +175,7 @@ exports.getWithStatus = (req, res) => {
 }
 
 exports.getWithAvgStars = (req, res) => {
-    const avg_stars = Number(req.params.stars);
+    const avg_stars = Number(req.body.stars);
 
     Room.aggregate([
         {$unwind: "$room_reviews"},
@@ -267,13 +267,14 @@ exports.addReservationToRooms = (req, res) => {
         {"_id": new mongoose.Types.ObjectId(req.body.type_id)},
         {$push: {"rooms_array.$[room].room_reservations": reservation}},
         {arrayFilters: [{"room.room_number": req.body.room_number}]}
-    ).then(data => {
+    )
+    .then(data => {
         res.send(data);
     })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while creating the reservation."
-            });
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while creating the reservation."
         });
+    });
 }

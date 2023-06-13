@@ -5,10 +5,10 @@ module.exports = app => {
     let router = require("express").Router();
 
     router.get("/", room.getAll);
-    router.get("/id/:id", room.getById);
-    router.get("/stars/:stars", room.getWithAvgStars);
+    router.get("/id/:id", room.getById)
+    router.get("/stars", room.getWithAvgStars);
     router.get("/dates", room.getWithAvailableDateAndRoomType);
-    router.get("/status",room.getWithStatus);
+    router.post("/status",room.getWithStatus)
 
     router.post("/addReservation", room.addReservationToRooms);
 

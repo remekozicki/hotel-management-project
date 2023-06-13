@@ -163,49 +163,28 @@ exports.delete = (req, res) => {
 };
 
 
-exports.register = (req, res) => {
-    User.getOne({email: req.body.email})
-        .then(user => {
-            if (user) {
-                res.json({
-                    message: 'Email is already used',
-                    result: 'email'
-                })
-            } else {
-                bcrypt.hash(req.body.password, 10, function (err, hashedPass) {
-                    if (err) {
-                        res.json({error: err})
-                    } else {
-                        let user = new User({
-                            firstname: req.body.firstname,
-                            lastname: req.body.lastname,
-                            email: req.body.email,
-                            password: hashedPass,
-                            phone: req.body.phone,
-                            address: req.body.address,
-                            registered: new Date().toLocaleString()
-                        })
-                        user.save()
-                            .then(user => {
-                                res.json({})
-                            })
-                            .catch(error => {
-                                res.json({
-                                    message: 'Error!',
-                                    result: 'error'
-                                })
+exports.createNewUser = (req, res) => {
 
-                            })
-                    }
-                })
-            }
-        })
-        .catch(error => {
-            res.json({
-                message: 'Error!',
-                result: 'error'
-            })
-        })
+    User.insert({
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        email: req.body.email,
+        phone: req.body.phone,
+        address: req.body.dates,
+        registered: new Date(),
+        reservations_hitory: [],
+        role: req.body.role
+    })
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while creating the reservation."
+        });
+    });
+
 }
 
 exports.addReservationToUser = (req, res) => {
