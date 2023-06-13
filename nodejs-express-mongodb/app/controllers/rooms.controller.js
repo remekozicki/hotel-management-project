@@ -26,7 +26,7 @@ exports.getById = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving list of rooms."
+                    err.message || "Some error occurred while retrieving room."
             })
         })
 };

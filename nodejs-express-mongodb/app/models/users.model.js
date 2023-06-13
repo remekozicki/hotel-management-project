@@ -1,5 +1,5 @@
 module.exports = mongoose => {
-    const clientSchema = mongoose.Schema(
+    const userSchema = mongoose.Schema(
         {
             firstname: String,
             lastname: String,
@@ -25,5 +25,5 @@ module.exports = mongoose => {
     //     return object;
     // });
 
-    return mongoose.model("client", clientSchema);
+    return mongoose.model("users", userSchema);
 };
