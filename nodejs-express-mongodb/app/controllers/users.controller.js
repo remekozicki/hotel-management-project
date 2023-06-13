@@ -165,12 +165,12 @@ exports.delete = (req, res) => {
 
 exports.createNewUser = (req, res) => {
 
-    User.insert({
+    User.insertMany({
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         email: req.body.email,
         phone: req.body.phone,
-        address: req.body.dates,
+        address: req.body.address,
         registered: new Date(),
         reservations_hitory: [],
         role: req.body.role
