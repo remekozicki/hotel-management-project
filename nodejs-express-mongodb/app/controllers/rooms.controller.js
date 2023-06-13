@@ -254,27 +254,126 @@ exports.deleteAll = (req, res) => {
         });
 };
 
-exports.addReservationToRooms = (req, res) => {
+// exports.addReservationToRooms = (req, res) => {
+//
+//     const reservation = {
+//         _id: new mongoose.Types.ObjectId(req.body.reservation_id),
+//         client_id: new mongoose.Types.ObjectId(req.body.client_id),
+//         dates: req.body.dates,
+//         status: "pending"
+//     };
+//
+//     Room.updateOne(
+//         {"_id": new mongoose.Types.ObjectId(req.body.type_id)},
+//         {$push: {"rooms_array.$[room].room_reservations": reservation}},
+//         {arrayFilters: [{"room.room_number": req.body.room_number}]}
+//     )
+//     .then(data => {
+//         res.send(data);
+//     })
+//     .catch(err => {
+//         res.status(500).send({
+//             message:
+//                 err.message || "Some error occurred while creating the reservation."
+//         });
+//     });
+// }
 
-    const reservation = {
+exports.addReservation = (req, res) => {
+
+    const reservationRooms = {
         _id: new mongoose.Types.ObjectId(req.body.reservation_id),
         client_id: new mongoose.Types.ObjectId(req.body.client_id),
         dates: req.body.dates,
         status: "pending"
     };
 
+    const reservationUsers = {
+        reservation_id: new mongoose.Types.ObjectId(req.body.reservation_id),
+        room_number: req.body.room_number,
+        dates: req.body.dates,
+        status: "pending"
+    };
+
     Room.updateOne(
         {"_id": new mongoose.Types.ObjectId(req.body.type_id)},
-        {$push: {"rooms_array.$[room].room_reservations": reservation}},
+        {$push: {"rooms_array.$[room].room_reservations": reservationRooms }},
         {arrayFilters: [{"room.room_number": req.body.room_number}]}
     )
-    .then(data => {
+        .then(data => {
+            // res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while creating the reservation."
+            });
+        });
+
+    User.updateOne(
+        { "_id": new mongoose.Types.ObjectId(req.body.client_id) },
+        { $push: { "reservations_hitory": reservationUsers } }
+    ).then(data => {
         res.send(data);
     })
-    .catch(err => {
-        res.status(500).send({
-            message:
-                err.message || "Some error occurred while creating the reservation."
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while creating the reservation."
+            });
         });
-    });
+
+}
+
+exports.addReview = (req, res) => {
+
+    const review = {
+        client_id: new mongoose.Types.ObjectId(req.body.client_id),
+        stars: req.body.stars,
+        body: req.body.body
+    };
+
+    Room.updateOne(
+        { "_id": new mongoose.Types.ObjectId(req.body.room_id) },
+        { $push: { "room_reviews": review } }
+    ).then(data => {
+        res.send(data);
+    })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while creating the reservation."
+            });
+        });
+
+}
+
+exports.changeReservationStatus = (req, res) => {
+
+    Room.updateOne(
+        {
+            "rooms_array.room_reservations._id": new mongoose.Types.ObjectId(req.body.reservation_id)
+        },
+        {
+            $set:
+                {
+                    "rooms_array.$[outer].room_reservations.$[inner].status": req.body.status
+                }
+        },
+        {
+            arrayFilters: [
+                { "outer.room_reservations._id": new mongoose.Types.ObjectId(req.body.reservation_id) },
+                { "inner._id": new mongoose.Types.ObjectId(req.body.reservation_id) }
+            ]
+        }
+    ).then(data => {
+        res.send(data);
+    })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while creating the reservation."
+            });
+        });
+
 }

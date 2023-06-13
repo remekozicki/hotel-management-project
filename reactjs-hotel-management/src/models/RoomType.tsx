@@ -4,6 +4,8 @@ export default interface RoomType {
     image: string;
     size: number;
     price: number;
-    description: string
+    description: string,
+    rooms_array: [],
+    room_reviews: []
 }
 

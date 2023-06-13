@@ -4,9 +4,13 @@ export default interface PersonType{
     lastname: string;
     email: string;
     phone: string;
-    address: string;
+    address: {
+        city: string,
+        street: string,
+        building_number: Number
+    },
     registered: string;
-    salary?: number;
-
+    reservations_hitory: [],
+    role: string
 
 }

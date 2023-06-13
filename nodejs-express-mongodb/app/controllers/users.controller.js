@@ -187,18 +187,34 @@ exports.createNewUser = (req, res) => {
 
 }
 
-exports.addReservationToUser = (req, res) => {
+// exports.addReservationToUser = (req, res) => {
+//
+//     const reservation = {
+//         reservation_id: new mongoose.Types.ObjectId(req.body.reservation_id),
+//         room_number: req.body.room_number,
+//         dates: req.body.dates,
+//         status: "pending"
+//     }
+//
+//     User.updateOne(
+//         { "_id": new mongoose.Types.ObjectId(req.body.client_id) },
+//         { $push: { "reservations_hitory": reservation } }
+//     ).then(data => {
+//         res.send(data);
+//     })
+//         .catch(err => {
+//             res.status(500).send({
+//                 message:
+//                     err.message || "Some error occurred while creating the reservation."
+//             });
+//         });
+// }
 
-    const reservation = {
-        reservation_id: new mongoose.Types.ObjectId(req.body.reservation_id),
-        room_number: req.body.room_number,
-        dates: req.body.dates,
-        status: "pending"
-    }
+exports.changeReservationStatus = (req, res) => {
 
     User.updateOne(
-        { "_id": new mongoose.Types.ObjectId(req.body.client_id) },
-        { $push: { "reservations_hitory": reservation } }
+        { "reservations_hitory.reservation_id": new mongoose.Types.ObjectId(req.body.reservation_id) },
+        { $set: { "reservations_hitory.$.status": req.body.status } }
     ).then(data => {
         res.send(data);
     })
@@ -208,4 +224,5 @@ exports.addReservationToUser = (req, res) => {
                     err.message || "Some error occurred while creating the reservation."
             });
         });
+
 }

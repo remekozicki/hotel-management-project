@@ -12,7 +12,7 @@ module.exports = mongoose => {
                 building_number: Number
             },
             registered: String,
-            reservations_history: [],
+            reservations_hitory: [],
             role: String
 
         },

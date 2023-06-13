@@ -9,8 +9,11 @@ module.exports = app => {
     router.get("/clients", user.getClients);
     router.get("/employees", user.getEmployees);
     router.get("/reservations/:id", user.getReservationsByUserId);
-    router.post("/addReservation", user.addReservationToUser);
+
+    // router.post("/addReservation", user.addReservationToUser);
     router.post("/createUser", user.createNewUser);
+    router.post("/changeStatus", user.changeReservationStatus);
+
     router.delete("/id/:id", user.delete);
     router.delete("/", user.deleteAll);
 

@@ -5,7 +5,7 @@ import data from '../../assets/RoomsTypesData.json';
 import RoomType from "../../models/RoomType";
 import CardComponent from "../CardComponent/CardComponent";
 
-function RoomsComponent(): JSX.Element {
+function RoomsComponent() {
 
     const [rooms, setRooms] = useState<RoomType[]>([]);
     useEffect(() => {
@@ -16,7 +16,7 @@ function RoomsComponent(): JSX.Element {
         <div className='wrapper'>
             <h2 className='p-3'>Available rooms:</h2>
             <div className='d-flex flex-wrap gap-5 justify-content-center'>
-                {rooms.map((roomType: RoomType) => {
+                {rooms.map((roomType) => {
                     return <CardComponent _id={roomType._id} type={roomType.type} image={roomType.image}
                                           size={roomType.size} price={roomType.price}
                                           description={roomType.description}></CardComponent>
