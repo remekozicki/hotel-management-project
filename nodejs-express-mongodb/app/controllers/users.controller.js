@@ -207,3 +207,26 @@ exports.register = (req, res) => {
             })
         })
 }
+
+exports.addReservationToUser = (req, res) => {
+
+    const reservation = {
+        reservation_id: new mongoose.Types.ObjectId(req.body.reservation_id),
+        room_number: req.body.room_number,
+        dates: req.body.dates,
+        status: "pending"
+    }
+
+    User.updateOne(
+        { "_id": new mongoose.Types.ObjectId(req.body.client_id) },
+        { $push: { "reservations_hitory": reservation } }
+    ).then(data => {
+        res.send(data);
+    })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while creating the reservation."
+            });
+        });
+}

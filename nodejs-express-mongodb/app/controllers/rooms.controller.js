@@ -1,5 +1,7 @@
 const db = require("../models");
+const mongoose = require("mongoose");
 const Room = db.rooms;
+const User = db.users;
 
 // Retrieve all rooms from the database.
 exports.getAll = (req, res) => {
@@ -10,7 +12,7 @@ exports.getAll = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving list of rooms."
+                    err.message || "Some error occurred while retrieving list of room types."
             })
         })
 };
@@ -26,7 +28,7 @@ exports.getById = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving room."
+                    err.message || "Some error occurred while retrieving room type."
             })
         })
 };
@@ -107,7 +109,7 @@ exports.getWithAvailableDateAndRoomType = (req, res) => {
         .then(data => {
             if (!data) {
                 res.status(404).send({
-                    message: "Not found rooms with such rating: %d"
+                    message: "Not found room types with such filters"
                 })
             } else {
                 res.send(data);
@@ -115,7 +117,7 @@ exports.getWithAvailableDateAndRoomType = (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error retrieving Room with typeID: %d"
+                message: "Error retrieving room type with such filters"
             })
         })
 }
@@ -159,7 +161,7 @@ exports.getWithStatus = (req, res) => {
         .then(data => {
             if (!data) {
                 res.status(404).send({
-                    message: "Not found rooms with such rating: %d"
+                    message: "Not found room types with such status " + input_status
                 })
             } else {
                 res.send(data);
@@ -167,7 +169,7 @@ exports.getWithStatus = (req, res) => {
         })
         .catch(err => {
             res.status(500).send({
-                message: "Error retrieving Room with typeID: %d"
+                message: "Error retrieving room type with status " + input_status
             })
         })
 }
@@ -222,17 +224,17 @@ exports.delete = (req, res) => {
         .then(data => {
             if (!data) {
                 res.status(404).send({
-                    message: `Cannot delete Room with id=${id}. Maybe Room was not found!`
+                    message: `Cannot delete room type with id=${id}. Maybe room type was not found!`
                 });
             } else {
                 res.send({
-                    message: "Room was deleted successfully!"
+                    message: "Room type was deleted successfully!"
                 });
             }
         })
         .catch(err => {
             res.status(500).send({
-                message: "Could not delete Room with id=" + id
+                message: "Could not delete room type with id=" + id
             });
         });
 };
@@ -241,13 +243,37 @@ exports.deleteAll = (req, res) => {
     Room.deleteMany({})
         .then(data => {
             res.send({
-                message: `${data.deletedCount} Rooms were deleted successfully!`
+                message: `${data.deletedCount} Room types were deleted successfully!`
             });
         })
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while removing all rooms."
+                    err.message || "Some error occurred while removing all room types."
             });
         });
 };
+
+exports.addReservationToRooms = (req, res) => {
+
+    const reservation = {
+        _id: new mongoose.Types.ObjectId(req.body.reservation_id),
+        client_id: new mongoose.Types.ObjectId(req.body.client_id),
+        dates: req.body.dates,
+        status: "pending"
+    };
+
+    Room.updateOne(
+        {"_id": new mongoose.Types.ObjectId(req.body.type_id)},
+        {$push: {"rooms_array.$[room].room_reservations": reservation}},
+        {arrayFilters: [{"room.room_number": req.body.room_number}]}
+    ).then(data => {
+        res.send(data);
+    })
+        .catch(err => {
+            res.status(500).send({
+                message:
+                    err.message || "Some error occurred while creating the reservation."
+            });
+        });
+}

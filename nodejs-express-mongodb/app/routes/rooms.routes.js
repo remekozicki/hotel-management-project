@@ -9,6 +9,9 @@ module.exports = app => {
     router.get("/stars/:stars", room.getWithAvgStars);
     router.get("/dates", room.getWithAvailableDateAndRoomType);
     router.get("/status",room.getWithStatus);
+
+    router.post("/addReservation", room.addReservationToRooms);
+
     router.delete("/id/:id", room.delete);
     router.delete("/", room.deleteAll);
 

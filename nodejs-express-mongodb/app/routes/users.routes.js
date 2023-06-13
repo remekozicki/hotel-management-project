@@ -10,10 +10,10 @@ module.exports = app => {
     router.get("/employees", user.getEmployees);
     router.get("/reservations/:id", user.getReservationsByUserId);
 
+    router.post("/addReservation", user.addReservationToUser);
+
     router.delete("/id/:id", user.delete);
     router.delete("/", user.deleteAll);
 
     app.use('/api/users', router);
-
-
 }
