@@ -5,8 +5,11 @@ module.exports = app => {
     let router = require("express").Router();
 
     router.get("/", room.getAll);
-    router.get("/:type_id", room.getByTypeID);
-    router.delete("/:id", room.delete);
+    router.get("/id/:id", room.getById)
+    router.get("/stars/:stars", room.getWithAvgStars);
+    router.get("/dates", room.getWithAvailableDateAndRoomType);
+    router.get("/status",room.getWithStatus)
+    router.delete("/id/:id", room.delete);
     router.delete("/", room.deleteAll);
 
     app.use('/api/rooms', router);
