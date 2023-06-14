@@ -12,5 +12,5 @@
 <li>Baza danych: Mongodb
 <li>Backend: Node.js + Express.js
 <li>Frontend: React.js
-<li>Dokumentacja znajduje sie w "project-dokumentacja.pdf"
+<li>Dokumentacja znajduje sie w "projekt-dokumentacja.pdf"
 </ul>
