@@ -132,7 +132,6 @@ exports.getWithStatus = (req, res) => {
         {$unwind: "$rooms_array.room_reservations"},
         {
             $project: {
-
                 _id: 0,
                 reservation_id: "$rooms_array.room_reservations._id",
                 reservation_status: "$rooms_array.room_reservations.status",
