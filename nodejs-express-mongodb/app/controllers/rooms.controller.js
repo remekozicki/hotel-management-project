@@ -73,11 +73,19 @@ exports.getWithAvailableDateAndRoomType = (req, res) => {
                     {
                         $or: [
                             {
-                                $nor: [{
-                                    $and: [{"start_date": {$gte: input_start_date}},
-                                        {"end_date": {$lte: input_end_date}}
-                                    ]
-                                },
+                                $nor: [
+                                    {$and:[
+                                            {"start_date":{$gte: input_start_date}},
+                                            {"end_date": {$lte: input_end_date}},
+                                        ]},
+                                    {$and:[
+                                            {"start_date":{$lte: input_start_date}},
+                                            {"end_date": {$gte: input_start_date}},
+                                        ]},
+                                    {$and:[
+                                            {"start_date":{$lte: input_end_date}},
+                                            {"end_date": {$gte: input_end_date}},
+                                        ]},
                                 ]
                             },
                             {"reservation_status": {$eq: "cancelled"}}
@@ -136,8 +144,8 @@ exports.getWithStatus = (req, res) => {
                 _id: 0,
                 reservation_id: "$rooms_array.room_reservations._id",
                 reservation_status: "$rooms_array.room_reservations.status",
-                start_reservation: "$rooms_array.room_reservations.dates.start_date",
-                end_reservation: "$rooms_array.room_reservations.dates.end_date",
+                // start_reservation: "$rooms_array.room_reservations.dates.start_date",
+                // end_reservation: "$rooms_array.room_reservations.dates.end_date",
                 start_date: {
                     $toDate: "$rooms_array.room_reservations.dates.start_date"
                 },
@@ -196,7 +204,10 @@ exports.getWithAvgStars = (req, res) => {
                 type: "$_id",
                 avg_stars: "$avg_stars"
             }
-        }
+        },
+        {$sort:{
+                avg_stars: -1,
+            }}
 
     ])
         .then(data => {
@@ -281,15 +292,17 @@ exports.deleteAll = (req, res) => {
 
 exports.addReservation = (req, res) => {
 
+    const reservation_id = new mongoose.Types.ObjectId();
+
     const reservationRooms = {
-        _id: new mongoose.Types.ObjectId(req.body.reservation_id),
+        _id: reservation_id,
         client_id: new mongoose.Types.ObjectId(req.body.client_id),
         dates: req.body.dates,
         status: "pending"
     };
 
     const reservationUsers = {
-        reservation_id: new mongoose.Types.ObjectId(req.body.reservation_id),
+        reservation_id: reservation_id,
         room_number: req.body.room_number,
         dates: req.body.dates,
         status: "pending"
