@@ -350,30 +350,65 @@ exports.addReview = (req, res) => {
 
 exports.changeReservationStatus = (req, res) => {
 
-    Room.updateOne(
-        {
-            "rooms_array.room_reservations._id": new mongoose.Types.ObjectId(req.body.reservation_id)
-        },
-        {
-            $set:
-                {
-                    "rooms_array.$[outer].room_reservations.$[inner].status": req.body.status
+
+    Room.updateMany(
+        { "rooms_array.room_reservations._id": new mongoose.Types.ObjectId(req.body.reservation_id) },
+        [
+            {
+                $set: {
+                    rooms_array: {
+                        $ifNull: [
+                            {
+                                $map: {
+                                    input: "$rooms_array",
+                                    in: {
+                                        $mergeObjects: [
+                                            "$$this",
+                                            {
+                                                room_reservations: {
+                                                    $map: {
+                                                        input: "$$this.room_reservations",
+                                                        in: {
+                                                            $cond: [
+                                                                { $eq: ["$$this._id", new mongoose.Types.ObjectId(req.body.reservation_id)] },
+                                                                { $mergeObjects: ["$$this", { status: req.body.status }] },
+                                                                "$$this"
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            "$rooms_array"
+                        ]
+                    }
                 }
-        },
-        {
-            arrayFilters: [
-                { "outer.room_reservations._id": new mongoose.Types.ObjectId(req.body.reservation_id) },
-                { "inner._id": new mongoose.Types.ObjectId(req.body.reservation_id) }
-            ]
-        }
+            }
+        ]
+    )
+
+    .then(data => {
+        // res.send(data);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while creating the reservation."
+        });
+    });
+    User.updateOne(
+        { "reservations_hitory.reservation_id": new mongoose.Types.ObjectId(req.body.reservation_id) },
+        { $set: { "reservations_hitory.$.status": req.body.status } }
     ).then(data => {
         res.send(data);
     })
-        .catch(err => {
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while creating the reservation."
-            });
+    .catch(err => {
+        res.status(500).send({
+            message:
+                err.message || "Some error occurred while creating the reservation."
         });
-
+    });
 }
