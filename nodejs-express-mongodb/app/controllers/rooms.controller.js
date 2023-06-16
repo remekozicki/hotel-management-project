@@ -34,85 +34,58 @@ exports.getById = (req, res) => {
 };
 
 exports.getWithAvailableDateAndRoomType = (req, res) => {
-    const input_start_date = new Date(req.body.start);
-    const input_end_date = new Date(req.body.end);
+    const input_start_date = req.body.start;
+    const input_end_date = req.body.end;
     const input_type = req.body.type
 
     Room.aggregate([
-        {$unwind: "$rooms_array"},
         {
-            $unwind: {
-                path: "$rooms_array.room_reservations",
-                preserveNullAndEmptyArrays: true
+            $match: {
+                type: input_type
             }
         },
         {
-            $project: {
-
-                _id: 0,
-                room_type: "$type",
-                room_number: "$rooms_array.room_number",
-                description: "$description",
-                size: "$size",
-                price: "$price",
-                reservation_status: "$rooms_array.room_reservations.status",
-                start_date: {
-                    $toDate: "$rooms_array.room_reservations.dates.start_date"
-                },
-
-                end_date: {
-                    $toDate: "$rooms_array.room_reservations.dates.end_date"
+            $unwind: "$rooms_array"
+        },
+        {
+            $addFields: {
+                "rooms_array.available": {
+                    $not: {
+                        $anyElementTrue: {
+                            $map: {
+                                input: "$rooms_array.room_reservations",
+                                as: "reservation",
+                                in: {
+                                    $and: [
+                                        { $lte: [input_start_date, "$$reservation.dates.end_date"] },
+                                        { $gte: [input_end_date, "$$reservation.dates.start_date"] }
+                                    ]
+                                }
+                            }
+                        }
+                    }
                 }
-
             }
         },
         {
             $match: {
-
-                $and: [
-                    {
-                        $or: [
-                            {
-                                $nor: [
-                                    {$and:[
-                                            {"start_date":{$gte: input_start_date}},
-                                            {"end_date": {$lte: input_end_date}},
-                                        ]},
-                                    {$and:[
-                                            {"start_date":{$lte: input_start_date}},
-                                            {"end_date": {$gte: input_start_date}},
-                                        ]},
-                                    {$and:[
-                                            {"start_date":{$lte: input_end_date}},
-                                            {"end_date": {$gte: input_end_date}},
-                                        ]},
-                                ]
-                            },
-                            {"reservation_status": {$eq: "cancelled"}}
-
-                        ]
-                    },
-
-                    {"room_type": input_type},
-
-                ]
-            }
-        },
-
-        {
-            $project: {
-                start_date: 0,
-                end_date: 0,
-
+                "rooms_array.available": true
             }
         },
         {
             $group: {
-
-                _id: "$room_number"
+                _id: null,
+                room_numbers: {
+                    $push: "$rooms_array.room_number"
+                }
+            }
+        },
+        {
+            $project: {
+                _id: 0,
+                room_numbers: 1
             }
         }
-
     ])
         .then(data => {
             if (!data) {
